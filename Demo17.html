@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo17</title>
+    <script src="https://unpkg.com/vue@next" ></script>
+</head>
+<body>
+    <div id="app"></div>
+</body>
+<script>
+    const app=Vue.createApp({ 
+        data(){
+            return{
+                listArray:['谢大脚', '刘英', '晓红'],
+                listObject:{
+                    GirlOne: '谢大脚',
+                    GirlTwo: '刘英',
+                    GirlThree: '晓红'
+                }
+            }
+        },
+        methods:{
+            handleChangeBtnClick(){
+                this.listArray.push('jspang.com')
+            }
+        },
+        // 为了提高循环时性能，在数组其中一项变化后，整个数组不进行全部重新渲染，Vue提供了绑定key值的使用方法，目的就是增加渲染性能，避免重复渲
+        template:`
+            <ul>
+                <li 
+                v-for="(item,index) in listArray"
+                :key="index+item"
+                >
+                    【{{index}}】{{item}}</li>
+            </ul>
+            <button @click="handleChangeBtnClick">点击改变</button>
+            <ul>
+                <li 
+                v-for="(value,key,index) in listObject"
+                :key="key"
+                >
+                    【{{index}}】{{key}}:{{value}}</li>
+            </ul>
+        `
+
+    }) 
+    const vm=app.mount("#app")
+</script>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>佳丽列表</title>
+	<script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+	<div id="app"></div>
+</body>
+<script>
+	Vue.createApp({ //创建一个Vue实例，简单理解就说，我要使用Vue了
+		data(){
+			return{
+				inputValue:'',
+				list: []
+			}
+		},
+		methods:{
+			handleAddItem(){
+				this.list.push(this.inputValue)
+				this.inputValue = ''
+			}
+		},
+		// template: '<ul><li v-for="item of list">{{item}}</li></ul>' ,// template是模板的意思，就是在JS里写html代码
+		template: '<div><input v-model="inputValue"/><button v-on:click="handleAddItem">增加佳丽</button><ul><li v-for="(item, index) of list">[{{index}}]{{item}}</li></ul></div>' // template是模板的意思，就是在JS里写html代码
+	}).mount("#app")  //这个模板需要放一个位置，也就是说挂载，挂载到`id=app`的DOM上
+</script>
+</html>

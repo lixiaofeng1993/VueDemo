@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Demo11</title>
+		<script src="https://unpkg.com/vue@next"></script>
+	</head>
+	<body>
+		<div id="app"></div>
+	</body>
+	<script>
+		const app = Vue.createApp({
+			data(){
+				return {
+					message: 'bilibili' ,//在这里定义了数据，也就是‘model’数据
+				}
+			},
+			// 被动执行函数
+			methods:{
+				handleItemClick(){
+					this.message = this.message == 'jspang.com' ? '技术胖': 'jspang.com'
+				},
+			},
+			// template: `<h2
+			// 		:class="message=='jspang.com'?'one':'two'"
+			// 		@click="handleItemClick">
+			// 		{{message}}
+			// 	</h2>` ,//在这里定义了模板，也就是‘view’
+			template: `
+			<h2 @click="handleItemClick" v-if="message=='jspang.com'" class="one" > {{message}} </h2>
+			<h2 @click="handleItemClick" v-else-if="message=='技术胖'" class="two" > {{message}} </h2>
+			<h2 @click="handleItemClick" v-else  class="three"> {{message}} </h2>
+			    `
+		})
+		const vm = app.mount("#app")
+	</script>
+	<style>
+		.one {color: red;}
+		.two {color: green;}
+		.three {color: orange;}
+	</style>
+</html>

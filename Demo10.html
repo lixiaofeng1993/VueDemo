@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Demo9</title>
+		<script src="https://unpkg.com/vue@next"></script>
+	</head>
+	<body>
+		<div id="app"></div>
+	</body>
+	<script>
+		// v-on 用来绑定响应事件 可以使用 @ 代替
+		// 动态模板参数 绑定属性 使用 [] 加 data中变量名的形式 事件也可以动态绑定
+		// 阻止默认事件 prevent 阻止默认事件的修饰符
+		const app = Vue.createApp({
+			data(){
+				return {
+					message: 'jspang.com' ,//在这里定义了数据，也就是‘model’数据
+					name: 'title',
+					event: 'mouseenter'
+					
+				}
+			},
+			// 被动执行函数
+			methods:{
+				hanldClick(){
+					alert("欢迎光临红浪漫")
+				},
+				// hanldeButton(e){
+				// 	e.preventDefault()
+				// },
+				hanldeButton(){
+				    alert('jspang.com') 
+				}
+			},
+			// template: `<h2 @[event]="hanldClick" :[name]="message">{{message}}</h2>` ,//在这里定义了模板，也就是‘view’
+			template:`
+			<form action="https://jspang.com"
+				@click.prevent="hanldeButton">
+				<button type="submit">默认提交</button>
+			</form>`
+		})
+		const vm = app.mount("#app")
+	</script>
+</html>

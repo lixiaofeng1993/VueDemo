@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo18</title>
+    <script src="https://unpkg.com/vue@next" ></script>
+</head>
+<body>
+    <div id="app"></div>
+</body>
+<script>
+    const app=Vue.createApp({ 
+        data(){
+            return{
+                listArray:['谢大脚', '刘英', '晓红'],
+                listObject:{
+                    GirlOne: '谢大脚',
+                    GirlTwo: '刘英',
+                    GirlThree: '晓红'
+                }
+            }
+        },
+        methods:{
+            handleChangeBtnClick(){
+                this.listArray.push('jspang.com')
+            }
+        },
+        // v-for循环的优先级要高于v-if判断的优先级
+        // <template>模版标签 一个空的占位符 目的就是解决模板中为完成业务逻辑，而使用的无用html标签的现象
+        template:`
+            <ul>
+                <template v-for="(item,index) in listArray"
+                    >
+                    <li 
+                    v-if="item != '谢大脚'"
+                    >
+                        【{{index}}】{{item}}</li>
+                </template>
+            </ul>
+            <button @click="handleChangeBtnClick">点击改变</button>
+            <ul>
+                <li 
+                v-for="(value,key,index) in listObject"
+                
+                >
+                    【{{index}}】{{key}}:{{value}}</li>
+            </ul>
+
+            <span v-for="count in 99"> {{count}} |</span>
+        `
+
+    }) 
+    const vm=app.mount("#app")
+</script>
+</html>

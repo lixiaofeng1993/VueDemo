@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Demo15</title>
+		<script src="https://unpkg.com/vue@next"></script>
+	</head>
+	<body>
+		<div id="app"></div>
+	</body>
+	<script>
+        // 主动调用的是父组件，被调用的是子组件
+		const app = Vue.createApp({ // 父组件
+			data(){
+                return{
+                    classString:'red',
+                    classObject:{red:false,backgrount:true},
+                    classArray:['green','backgrount',{red:true}],
+                    styleString:'color:orange;',
+                    styleObject:{
+                        color: 'red',
+                        background: 'yellow'
+                    }
+                }
+            },
+			template: `
+                <h2 :style="styleObject">jspang.com</h2>
+                <sonCom class="green"/>
+			`
+        })
+        // component 子组件
+        // 子组件的最外层只有一个根元素
+		app.component('sonCom',{
+            template: `
+                <div>
+                    <div>sonCom</div>
+                    <div>技术胖</div>
+                </div>
+            `
+        })
+
+        const vm=app.mount("#app")
+    </script>
+    <style>
+        /* !important 提高显示优先级 */
+        .red{color: red !important;}
+        .green{color: green;}
+        .backgrount{background-color: orange;}
+    </style>
+</html>

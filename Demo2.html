@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Demo2计数器</title>
+		<script src="https://unpkg.com/vue@next"></script>
+	</head>
+	<body>
+		<div id="app"></div>
+	</body>
+	<script>
+		Vue.createApp({
+			data(){
+				return {
+					counter: 1
+				}
+			},
+			mounted(){
+				console.log("页面加载完成后自动执行！")
+				setInterval(() => {
+					this.counter += 1 //这个this.counter指向的就是data中的counter
+					// this.$data.counter += 1 // 效果相同
+				}, 1000)
+			},
+			template: '<div> {{counter}} </div>'
+		}).mount("#app")
+	</script>
+</html>

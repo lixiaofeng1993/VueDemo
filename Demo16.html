@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Demo16</title>
+		<script src="https://unpkg.com/vue@next"></script>
+	</head>
+	<body>
+		<div id="app"></div>
+	</body>
+	<script>
+        // v-if更加灵活，可以增加多个判断，比如v-else-iif和else，而v-show不具备这样的灵活性
+        // 如果显示和隐藏的状态切换比较频繁，并且没有什么多余复杂的业务逻辑，建议使用v-show,因为他不会一直渲染你的页面DOM元素，这或多或少对性能和稳定性有点提升。反之可以使用v-if
+		const app = Vue.createApp({
+			data(){
+                return{   
+                    show: false
+                }
+            },
+			template: `
+                <h2 v-show="show">jspang.com</h2>
+                <h2 v-if="show">jspang.com</h2>
+			`
+        })
+        const vm=app.mount("#app")
+    </script>
+</html>
